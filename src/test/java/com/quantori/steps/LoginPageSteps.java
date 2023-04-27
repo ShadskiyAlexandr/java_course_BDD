@@ -24,8 +24,13 @@ public class LoginPageSteps {
         loginPage.enterUserPassword(password);
     }
 
-    @When("user clicks button")
+    @When("user clicks Login button")
     public void userClicksButton() {
         loginPage.clickLoginButton();
+    }
+
+    @Then("login error message is displayed")
+    public void checkLoginErrorMessage() {
+        loginPage.checkLoginErrorMessage();
     }
 }

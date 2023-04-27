@@ -21,6 +21,8 @@ public class BaseContentPageSteps {
     }
 
     @Then("user should be redirected to {string} page")
+    @Then("user should stay on {string} page")
     public void checkUserRedirect(String pageName) {
+        baseContentPage.checkUserRedirect(pageName);
     }
 }
