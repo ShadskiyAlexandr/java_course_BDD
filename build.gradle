@@ -1,19 +1,31 @@
 plugins {
     id 'java'
+    id "io.freefair.lombok" version "8.0.0"
+    id("io.qameta.allure") version "2.11.2"
+    id "se.thinkcode.cucumber-runner" version "0.0.8"
 }
 
 group 'com.quantori'
 version '1.0-SNAPSHOT'
+def junit = '5.9.2'
+def faker = '1.0.2'
+def allureVersion = '2.21.0'
+def assertJVersion = '3.24.2'
+def cucumberVersion = '7.11.1'
+def selenideVersion = '6.12.3'
+def slf4jVersion = '2.0.5'
+def picocontainerVersion = '7.11.2'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-}
 
-test {
-    useJUnitPlatform()
+    testImplementation  "io.cucumber:cucumber-java:${cucumberVersion}"
+    testImplementation  "io.cucumber:cucumber-junit:${cucumberVersion}"
+    testImplementation "io.cucumber:cucumber-picocontainer:${picocontainerVersion}"
+    implementation "com.codeborne:selenide:${selenideVersion}"
+    implementation "org.aeonbits.owner:owner:1.0.12"
+
 }
