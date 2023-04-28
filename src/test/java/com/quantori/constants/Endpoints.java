@@ -3,7 +3,10 @@ package com.quantori.constants;
 public enum Endpoints {
 
     Login("profile.php#login"),
-    Appointment("#appointment");
+    Appointment("#appointment"),
+    AppointmentConfirmation("appointment.php#summary"),
+    Profile("profile.php#profile"),
+    History("history.php#history");
 
     private String urlPage;
 

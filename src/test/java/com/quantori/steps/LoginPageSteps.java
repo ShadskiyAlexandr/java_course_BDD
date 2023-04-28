@@ -15,22 +15,30 @@ public class LoginPageSteps {
     }
 
     @When("user enters user name {string}")
-    public void userEntersUserName(String userName) {
+    public void enterUserName(String userName) {
         loginPage.enterUserName(userName);
     }
 
     @When("user enters password {string}")
-    public void userEntersPassword(String password) {
+    public void enterPassword(String password) {
         loginPage.enterUserPassword(password);
     }
 
     @When("user clicks Login button")
-    public void userClicksButton() {
+    public void clicksLoginButton() {
         loginPage.clickLoginButton();
     }
 
     @Then("login error message is displayed")
     public void checkLoginErrorMessage() {
         loginPage.checkLoginErrorMessage();
+    }
+
+    @Then("user logged with Login {string} and Password {string}")
+    public void loginToTheSite(String login, String password) {
+        open();
+        enterUserName(login);
+        enterPassword(password);
+        clicksLoginButton();
     }
 }
