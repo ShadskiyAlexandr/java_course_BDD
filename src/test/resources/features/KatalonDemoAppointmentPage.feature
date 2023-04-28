@@ -8,6 +8,6 @@ Feature: Create an appointment feature file
   Scenario: 1.1 Create an appointment
     When user selects "Seoul CURA Healthcare Center" from Facility dropdown
     And user selects "Medicaid" radiobutton
-    And user selects a visit date
+    And user selected a visit date - "current date + 1 day"
     And user clicks Book button
     Then user should be redirected to "AppointmentConfirmation" page
