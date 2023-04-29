@@ -1,4 +1,4 @@
-Feature: History page feature file
+Feature: History page
 
   Background:
     Given user opened "Login" page

@@ -1,4 +1,4 @@
-Feature: Login feature file
+Feature: Login page
 
   Scenario: 1.1 Login with valid login and password
     Given user opened "Login" page

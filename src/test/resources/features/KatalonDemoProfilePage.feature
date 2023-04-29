@@ -1,4 +1,4 @@
-Feature: Create an appointment feature file
+Feature: Create an appointment
   Background:
     Given user opened "Login" page
     And user logged with Login "John Doe" and Password "ThisIsNotAPassword"

@@ -1,7 +1,8 @@
 package com.quantori.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import com.quantori.dto.HistoryCard;
+import com.google.common.base.Strings;
+import com.quantori.dto.AppointmentCard;
 import com.quantori.helpers.DateParser;
 import com.quantori.pages.components.HistoryTable;
 import org.openqa.selenium.By;
@@ -16,51 +17,21 @@ public class HistoryPage {
 
     private final String tableSelector = "//div[@class='panel panel-info']";
 
-    private HistoryCard card;
-
-    public HistoryCard buildCard () {
+    public AppointmentCard buildCard () {
         HistoryTable historyTable = new HistoryTable($(By.xpath(tableSelector)).shouldBe(visible));
         List<SelenideElement> cells = historyTable.getCells();
 
-        String facility = returnNullOrValue(cells.get(0).getText());
-        String hospitalReadmission = returnNullOrValue(cells.get(1).getText());
-        String healthcareProgram = returnNullOrValue(cells.get(2).getText());
-        String comment = returnNullOrValue(cells.get(3).getText());
+        String facility = Strings.emptyToNull(cells.get(0).getText());
+        String hospitalReadmission = Strings.emptyToNull(cells.get(1).getText());
+        String healthcareProgram = Strings.emptyToNull(cells.get(2).getText());
+        String comment = Strings.emptyToNull(cells.get(3).getText());
 
-        card = HistoryCard.builder()
+        return AppointmentCard.builder()
                 .visitDate(historyTable.heading().getText())
                 .facility(facility)
                 .hospitalReadmission(hospitalReadmission)
                 .healthcareProgram(healthcareProgram)
                 .comment(comment)
                 .build();
-
-        return card;
-    }
-
-    public HistoryCard buildCard (Map<String,String> data) {
-        HistoryTable historyTable = new HistoryTable($(By.xpath(tableSelector)).shouldBe(visible));
-
-        DateParser parser = new DateParser();
-
-        String visitDate = parser.getDate(data.get("Date"));
-        String facility = data.get("Facility");
-        String hospitalReadmission = data.get("Readmission");
-        String healthcareProgram = data.get("Program");
-        String comment = data.get("Comment");
-
-        card = HistoryCard.builder()
-                .visitDate(visitDate)
-                .facility(facility)
-                .hospitalReadmission(hospitalReadmission)
-                .healthcareProgram(healthcareProgram)
-                .comment(comment)
-                .build();
-
-        return card;
-    }
-
-    public String returnNullOrValue (String value) {
-        return value.equals("") ? null : value;
     }
 }
